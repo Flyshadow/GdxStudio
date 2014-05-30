@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="libs/gdx-backend-lwjgl-natives.jar"/>
-	<classpathentry kind="lib" path="libs/gdx-backend-lwjgl.jar"/>
-	<classpathentry kind="lib" path="libs/gdx-natives.jar"/>
-	<classpathentry kind="lib" path="libs/gdx.jar"/>
-	<classpathentry kind="lib" path="libs/autocomplete.jar"/>
-	<classpathentry kind="lib" path="libs/rsta.jar"/>
-	<classpathentry kind="lib" path="libs/android.jar"/>
-	<classpathentry kind="lib" path="libs/gdx-backend-android.jar"/>
-	<classpathentry kind="lib" path="libs/dx.jar"/>
-	<classpathentry kind="lib" path="libs/antlr.jar"/>
-	<classpathentry kind="lib" path="libs/ecj.jar"/>
-	<classpathentry kind="lib" path="libs/weblaflite.jar"/>
-	<classpathentry kind="lib" path="libs/scene3d.jar"/>
-	<classpathentry kind="src" path="theme"/>
 	<classpathentry kind="src" path="icon"/>
-	<classpathentry kind="src" path="src_libs"/>
+	<classpathentry kind="src" path="shots"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="theme"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="org.springsource.ide.eclipse.gradle.classpathcontainer"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

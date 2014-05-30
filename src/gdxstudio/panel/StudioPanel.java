@@ -37,6 +37,7 @@ import web.laf.lite.layout.VerticalFlowLayout;
 import web.laf.lite.utils.UIUtils;
 import web.laf.lite.widget.CenterPanel;
 
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
@@ -59,6 +60,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+import com.badlogic.gdx.tools.hiero.Hiero;
 import com.badlogic.gdx.tools.hiero.HieroPanel;
 import com.badlogic.gdx.tools.particleeditor.ParticlePanel;
 import com.badlogic.gdx.tools.particleeditor.ParticleRenderer;
@@ -84,7 +86,7 @@ final public class StudioPanel extends JPanel  {
 		config2.width = 640;
 		config2.height = 320;
 		config2.fullscreen = false;
-		config2.useGL20 = false;
+		//config2.useGL20 = false;
 	}
 
 	
@@ -107,8 +109,9 @@ final public class StudioPanel extends JPanel  {
 	public void createHieroCanvas(){
 		setOpaque(true);
 		removeAll();
-		HieroPanel panel = new HieroPanel();
-		canvas = new  LwjglAWTCanvas(new HieroPanel.FontRenderer() , false);
+		//HieroPanel panel = new HieroPanel();
+		//canvas = new  LwjglAWTCanvas(new HieroPanel.FontRenderer() , false);
+		canvas = new  LwjglAWTCanvas(new HieroPanel.FontRenderer());
 		HieroPanel.gamePanel.add(canvas.getCanvas());
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setPreferredSize(new Dimension(860, 650));
@@ -120,7 +123,8 @@ final public class StudioPanel extends JPanel  {
 		setOpaque(true);
 		removeAll();
 		ParticlePanel panel = new ParticlePanel();
-		canvas = new  LwjglAWTCanvas(new ParticleRenderer(panel) , false);
+		//canvas = new  LwjglAWTCanvas(new ParticleRenderer(panel) , false);
+		canvas = new  LwjglAWTCanvas(new ParticleRenderer(panel));
 		panel.initializeComponents(canvas);
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setPreferredSize(new Dimension(860, 650));
@@ -137,7 +141,8 @@ final public class StudioPanel extends JPanel  {
 			Scene.scenesMap.clear();
 			Scene.scenesMap.put("gdxstudio.SceneEditor", "");
 			setOpaque(false);
-			canvas = new  LwjglAWTCanvas(Scene.app , false);
+			//canvas = new  LwjglAWTCanvas(Scene.app , false);
+			canvas = new  LwjglAWTCanvas(Scene.app);
 			scrollPane = new JScrollPane(canvas.getCanvas());
 			scrollPane.setPreferredSize(new Dimension(800, 480));
 			UIUtils.setDrawBorder(scrollPane, false);
@@ -269,8 +274,10 @@ final public class StudioPanel extends JPanel  {
 			case "TextField":setName(new TextField("", Asset.skin));break;
 			case "Table":setName(new Table(Asset.skin));break;
 			case "CheckBox":setName(new CheckBox("Check", Asset.skin));break;
-			case "SelectBox":setName(new SelectBox(new String[]{"First","Second","Third"}, Asset.skin));break;
-			case "List":setName(new List(new String[]{"First","Second","Third"}, Asset.skin));break;
+			//case "SelectBox":setName(new SelectBox(new String[]{"First","Second","Third"}, Asset.skin));break;
+			//case "List":setName(new List(new String[]{"First","Second","Third"}, Asset.skin));break;
+			case "SelectBox":setName(new SelectBox( Asset.skin));break;
+			case "List":setName(new List(Asset.skin));break;
 			case "Slider":setName(new Slider(0, 10, 1, false, Asset.skin));break;
 			case "Dialog":setName(new Dialog("Title", Asset.skin));break;
 			case "Touchpad":setName(new Touchpad(5, Asset.skin));break;

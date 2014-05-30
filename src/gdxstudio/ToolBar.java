@@ -25,9 +25,6 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-import com.badlogic.gdx.tools.imagepacker.TexturePacker2;
-import com.badlogic.gdx.tools.imagepacker.TexturePacker2.Settings;
-
 import web.laf.lite.layout.HorizontalFlowLayout;
 import web.laf.lite.layout.ToolbarLayout;
 import web.laf.lite.layout.VerticalFlowLayout;
@@ -35,6 +32,8 @@ import web.laf.lite.popup.ButtonPopup;
 import web.laf.lite.popup.PopupWay;
 import web.laf.lite.utils.UIUtils;
 import web.laf.lite.widget.WebButtonGroup;
+
+import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 
 final public class ToolBar extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -238,16 +237,22 @@ final public class ToolBar extends JPanel {
     	packButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Settings settings = new Settings();
+				com.badlogic.gdx.tools.texturepacker.TexturePacker.Settings settings = new com.badlogic.gdx.tools.texturepacker.TexturePacker.Settings();
 				settings.maxWidth = 2048;
 		        settings.maxHeight = 2048;
 		        settings.paddingX = 0;
 		        settings.paddingY = 0;
-				TexturePacker2.process(settings, Content.getProject()+File.separator+"pack",
+		        
+		        //TexturePacker.process(input, output, packFileName);
+		        //TexturePacker.process(settings, input, output, packFileName);
+				//TexturePacker2.process(settings, Content.getProject()+File.separator+"pack",
+				//		Content.getProject()+"atlas/", "pack.atlas");
+		        TexturePacker.process(settings, Content.getProject()+File.separator+"pack",
 						Content.getProject()+"atlas/", "pack.atlas");
 				for(File f: new File(Content.getProject()+File.separator+"pack").listFiles()){
 					if(f.isDirectory()){
-						TexturePacker2.process(settings, f.getPath(), Content.getProject()+"atlas/", f.getName());
+						//TexturePacker2.process(settings, f.getPath(), Content.getProject()+"atlas/", f.getName());
+						TexturePacker.process(settings, f.getPath(), Content.getProject()+"atlas/", f.getName());
 						JOptionPane.showMessageDialog(null, "Packed Texture: "+f.getName(), "Texture Packer", 
 								JOptionPane.INFORMATION_MESSAGE);
 					}

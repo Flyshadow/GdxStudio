@@ -1,0 +1,68 @@
+apply plugin: "java"
+
+sourceCompatibility = 1.7
+sourceSets.main.java.srcDirs = [ "src/","src_libs/"]
+sourceSets.main.resources.srcDirs=["icon/","shots/","theme/"]
+
+project.ext.mainClassName = "scene2d.desktop.Main"
+//project.ext.assetsDir = new File("../android/assets");
+project.ext.assetsDir = new File("test/");
+
+ext {
+    appName = 'GdxStudio'
+    gdxVersion = '1.0.0'
+    roboVMVersion = '0.0.12'
+}
+    
+repositories {
+        mavenLocal()
+        maven { url "http://maven.oschina.net/content/groups/public/" }
+        maven { url "http://mvnrepository.com/tags/" }
+        mavenCentral()
+}
+
+dependencies {
+	 compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+     compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+     compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+     //compile "de.sciss:weblaf:1.27"
+     compile 'com.fifesoft:rsyntaxtextarea:2.5.0'
+     compile 'com.fifesoft:autocomplete:2.5.0'
+     compile 'com.fifesoft:languagesupport:r795'
+     compile 'com.google.android.tools:dx:1.7'
+     compile 'com.google.android:android:4.1.1.4'
+     compile 'org.eclipse.jdt.core.compiler:ecj:4.3.1'
+     compile 'org.antlr:antlr4:4.2.2'
+     compile fileTree(dir:"libs",include:'*.jar')
+}
+
+
+task run(dependsOn: classes, type: JavaExec) {
+    main = project.mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    workingDir = project.assetsDir
+    ignoreExitValue = true
+}
+
+task dist(type: Jar,dependsOn:classes) {
+    from files(sourceSets.main.output.classesDir)
+    from files(sourceSets.main.output.resourcesDir)
+    from {configurations.compile.collect {zipTree(it)}}
+    from files(project.assetsDir);
+ 
+    manifest {
+        attributes 'Main-Class': project.mainClassName
+    }
+}
+
+task copylibs(dependsOn:classes,type:Copy){
+	from sourceSets.main.runtimeClasspath
+	into "libs"
+}
+
+
+tasks.withType(Compile) { 
+	options.encoding = 'UTF-8'
+	options.failOnError = false
+} 

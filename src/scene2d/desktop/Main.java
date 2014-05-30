@@ -26,7 +26,7 @@ public class Main {
 			cfg.resizable = Scene.configJson.getBoolean("resize");
 			cfg.forceExit =  Scene.configJson.getBoolean("forceExit");
 			cfg.fullscreen =  Scene.configJson.getBoolean("fullScreen");
-			cfg.useGL20 = Scene.configJson.getBoolean("useGL20");
+			//cfg.useGL20 = Scene.configJson.getBoolean("useGL20");
 			cfg.vSyncEnabled = Scene.configJson.getBoolean("vSync");
 			cfg.audioDeviceBufferCount = Scene.configJson.getInt("audioBufferCount");
 			LwjglApplicationConfiguration.disableAudio = Scene.configJson.getBoolean("disableAudio");

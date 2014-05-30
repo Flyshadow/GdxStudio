@@ -128,7 +128,7 @@ public class SceneEditor extends Scene {
 					float rot = getAngle(selectedActor.getX()+selectedActor.getOriginX(), 
 							selectedActor.getY()+selectedActor.getOriginY(), x, y) 
 							- selectedActor.getRotation();
-					selectedActor.rotate(rot);
+					selectedActor.rotateBy(rot);
 				}
 				lastX = x;
 				lastY = y;
@@ -237,10 +237,10 @@ class AddField extends Table {
 	    		super.clicked(event, x, y);
 	    		if(SceneEditor.selectedActor instanceof List){
 		    		List list = (List) SceneEditor.selectedActor;
-		    		if(list.getItems().length == 0)
+		    		if(list.getItems().size == 0)
 		    			return;
 		    		Array<String> arr = new Array<String>(list.getItems());
-		    		list.setSelectedIndex(list.getItems().length-1);
+		    		list.setSelectedIndex(list.getItems().size-1);
 		    		arr.removeIndex(list.getSelectedIndex());
 		    		list.setItems(arr.toArray());
 		    		list.pack();
@@ -248,11 +248,11 @@ class AddField extends Table {
 	    		}
 	    		if(SceneEditor.selectedActor instanceof SelectBox){
 	    			SelectBox list = (SelectBox) SceneEditor.selectedActor;
-		    		if(list.getItems().length == 0)
+		    		if(list.getItems().size == 0)
 		    			return;
 		    		Array<String> arr = new Array<String>(list.getItems());
-		    		list.setSelection(list.getItems().length-1);
-		    		arr.removeIndex(list.getSelectionIndex());
+		    		list.setSelected(list.getItems().size-1);
+		    		arr.removeIndex(list.getSelectedIndex());
 		    		list.setItems(arr.toArray());
 		    		list.pack();
 		    		AddField.this.setPosition(list.getX(), list.getY()-AddField.this.getHeight());

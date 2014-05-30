@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -19,6 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -35,6 +37,7 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.StringBuilder;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
+import com.badlogic.gdx.utils.viewport.ScalingViewport;
 
 abstract public class Scene extends Group {
 	/* The array map containing all the scenes data of the game*/
@@ -816,11 +819,12 @@ abstract public class Scene extends Group {
 			log("Create");
 			Config.setup();
 			Serializer.setup();
-			stage2d = new com.badlogic.gdx.scenes.scene2d.Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
-					Scene.configJson.getBoolean("keepAspectRatio"));
+			//stage2d = new com.badlogic.gdx.scenes.scene2d.Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
+			//		Scene.configJson.getBoolean("keepAspectRatio"));
+			stage2d = new Stage();
 			stage2d.getRoot().setName("Root");
 			stage2d.getRoot().setTouchable(Touchable.childrenOnly);
-			stage2d.setCamera(new Camera());
+			//stage2d.setCamera(new Camera());
 			inputMux = new InputMultiplexer();
 			inputMux.addProcessor(stage2d);
 			stage3d = new Stage3d();
@@ -871,7 +875,9 @@ abstract public class Scene extends Group {
 		@Override
 		public final void resize(int width, int height) {
 			log("Resize");
-			stage2d.setViewport(targetWidth, targetHeight, configJson.getBoolean("keepAspectRatio"));
+			//stage2d.setViewport(targetWidth, targetHeight, configJson.getBoolean("keepAspectRatio"));
+			stage2d.setViewport(new ScalingViewport(Scaling.stretch, targetWidth, targetHeight, new OrthographicCamera()) );
+			
 			stage3d.setViewport(targetWidth, targetHeight, configJson.getBoolean("keepAspectRatio"));
 		}
 		@Override

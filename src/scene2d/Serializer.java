@@ -40,8 +40,8 @@ public class Serializer {
 		registerSerializer(TextButton.class, new TextButtonSerializer());
 		registerSerializer(Table.class, new TableSerializer());
 		registerSerializer(CheckBox.class, new CheckBoxSerializer());
-		registerSerializer(SelectBox.class, new SelectBoxSerializer());
-		registerSerializer(List.class, new ListSerializer());
+		//registerSerializer(SelectBox.class, new SelectBoxSerializer());
+		//registerSerializer(List.class, new ListSerializer());
 		registerSerializer(Slider.class, new SliderSerializer());
 		registerSerializer(TextField.class, new TextFieldSerializer());
 		registerSerializer(Touchpad.class, new TouchpadSerializer());
@@ -217,49 +217,49 @@ public class Serializer {
 		}
 	}
 
-	private static class SelectBoxSerializer extends ActorSerializer {
-
-		@Override
-		public Actor read(Json json, JsonValue jv, Class arg2) {
-			SelectBox select = new SelectBox(jv.getString("text").split(","), Asset.skin);
-			readActor(jv, select);
-			return select;
-		}
-
-		@Override
-		public void write(Json json, Actor select, Class arg2) {
-			json.writeObjectStart();
-			writeActor(json, select);
-			String items = "";
-			for(String s: ((SelectBox)select).getItems())
-				items+=s+",";
-			json.writeValue("text", items);
-			json.writeObjectEnd();
-		}
-
-	}
-
-	private static class ListSerializer extends ActorSerializer {
-
-		@Override
-		public Actor read(Json json, JsonValue jv, Class arg2) {
-			List list = new List(jv.getString("text").split(","), Asset.skin);
-			readActor(jv, list);
-			return list;
-		}
-
-		@Override
-		public void write(Json json, Actor list, Class arg2) {
-			json.writeObjectStart();
-			writeActor(json, list);
-			String items = "";
-			for(String s: ((List)list).getItems())
-				items+=s+",";
-			json.writeValue("text", items);
-			json.writeObjectEnd();
-		}
-
-	}
+//	private static class SelectBoxSerializer extends ActorSerializer {
+//
+//		@Override
+//		public Actor read(Json json, JsonValue jv, Class arg2) {
+//			SelectBox select = new SelectBox(jv.getString("text").split(","), Asset.skin);
+//			readActor(jv, select);
+//			return select;
+//		}
+//
+//		@Override
+//		public void write(Json json, Actor select, Class arg2) {
+//			json.writeObjectStart();
+//			writeActor(json, select);
+//			String items = "";
+//			for(String s: ((SelectBox)select).getItems())
+//				items+=s+",";
+//			json.writeValue("text", items);
+//			json.writeObjectEnd();
+//		}
+//
+//	}
+//
+//	private static class ListSerializer extends ActorSerializer {
+//
+//		@Override
+//		public Actor read(Json json, JsonValue jv, Class arg2) {
+//			List list = new List(jv.getString("text").split(","), Asset.skin);
+//			readActor(jv, list);
+//			return list;
+//		}
+//
+//		@Override
+//		public void write(Json json, Actor list, Class arg2) {
+//			json.writeObjectStart();
+//			writeActor(json, list);
+//			String items = "";
+//			for(String s: ((List)list).getItems())
+//				items+=s+",";
+//			json.writeValue("text", items);
+//			json.writeObjectEnd();
+//		}
+//
+//	}
 
 	public static class TouchpadSerializer extends ActorSerializer {
 		public static float deadZoneRadius = 5f;
