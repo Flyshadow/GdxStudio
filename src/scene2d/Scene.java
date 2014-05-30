@@ -824,6 +824,7 @@ abstract public class Scene extends Group {
 			stage2d = new Stage();
 			stage2d.getRoot().setName("Root");
 			stage2d.getRoot().setTouchable(Touchable.childrenOnly);
+			new Camera();
 			//stage2d.setCamera(new Camera());
 			inputMux = new InputMultiplexer();
 			inputMux.addProcessor(stage2d);
