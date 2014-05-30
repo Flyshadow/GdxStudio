@@ -1,10 +1,10 @@
 apply plugin: "java"
 
 sourceCompatibility = 1.7
-sourceSets.main.java.srcDirs = [ "src/","src_libs/"]
+sourceSets.main.java.srcDirs = [ "src/"]
 sourceSets.main.resources.srcDirs=["icon/","shots/","theme/"]
 
-project.ext.mainClassName = "scene2d.desktop.Main"
+project.ext.mainClassName = "gdxstudio.GdxStudio"
 //project.ext.assetsDir = new File("../android/assets");
 project.ext.assetsDir = new File("test/");
 
@@ -17,7 +17,7 @@ ext {
 repositories {
         mavenLocal()
         maven { url "http://maven.oschina.net/content/groups/public/" }
-        maven { url "http://mvnrepository.com/tags/" }
+        //maven { url "http://www.mvnrepository.com/artifact/" }
         mavenCentral()
 }
 

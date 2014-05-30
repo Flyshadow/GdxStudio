@@ -61,9 +61,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.badlogic.gdx.tools.hiero.Hiero;
-import com.badlogic.gdx.tools.hiero.HieroPanel;
-import com.badlogic.gdx.tools.particleeditor.ParticlePanel;
-import com.badlogic.gdx.tools.particleeditor.ParticleRenderer;
+//import com.badlogic.gdx.tools.hiero.HieroPanel;
+import com.badlogic.gdx.tools.particleeditor.ParticleEditor;
+//import com.badlogic.gdx.tools.particleeditor.ParticlePanel;
+//import com.badlogic.gdx.tools.particleeditor.ParticleRenderer;
 import com.badlogic.gdx.utils.Timer.Task;
 
 
@@ -109,10 +110,10 @@ final public class StudioPanel extends JPanel  {
 	public void createHieroCanvas(){
 		setOpaque(true);
 		removeAll();
+		Hiero panel = new Hiero();
 		//HieroPanel panel = new HieroPanel();
 		//canvas = new  LwjglAWTCanvas(new HieroPanel.FontRenderer() , false);
-		canvas = new  LwjglAWTCanvas(new HieroPanel.FontRenderer());
-		HieroPanel.gamePanel.add(canvas.getCanvas());
+		//HieroPanel.gamePanel.add(canvas.getCanvas());
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setPreferredSize(new Dimension(860, 650));
 		UIUtils.setDrawBorder(scrollPane, false);
@@ -122,10 +123,10 @@ final public class StudioPanel extends JPanel  {
 	public void createParticleCanvas(){
 		setOpaque(true);
 		removeAll();
-		ParticlePanel panel = new ParticlePanel();
+		ParticleEditor panel = new ParticleEditor();
+		//ParticlePanel panel = new ParticlePanel();
 		//canvas = new  LwjglAWTCanvas(new ParticleRenderer(panel) , false);
-		canvas = new  LwjglAWTCanvas(new ParticleRenderer(panel));
-		panel.initializeComponents(canvas);
+		//panel.initializeComponents(canvas);
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setPreferredSize(new Dimension(860, 650));
 		UIUtils.setDrawBorder(scrollPane, false);
